@@ -60,6 +60,7 @@ function apiCall(_options, _callback) {
 
 function Sync(method, model, opts) {
 	var DEBUG = model.config.debug;
+	var rootNode = model.config.rootNode || null;
 	var methodMap = {
 		'create' : 'POST',
 		'read' : 'GET',
@@ -127,7 +128,16 @@ function Sync(method, model, opts) {
 			}
 			apiCall(params, function(_response) {
 				if (_response.success) {
-					var data = JSON.parse(_response.responseText);
+					var tmp = JSON.parse(_response.responseText);
+					if (rootNode) {
+						var data = eval('tmp.' + rootNode);
+						if (!data) {
+							Ti.API.error("[REST API] ERROR: ROOT NODE NOT EXISTS");
+							return;
+						}
+					} else {
+						var data = tmp;
+					}
 					if(DEBUG){ 
 						Ti.API.info("[REST API] server delete response: ");
 						Ti.API.debug(data) 
@@ -151,7 +161,16 @@ function Sync(method, model, opts) {
 			}
 			apiCall(params, function(_response) {
 				if (_response.success) {
-					var data = JSON.parse(_response.responseText);
+					var tmp = JSON.parse(_response.responseText);
+					if (rootNode) {
+						var data = eval('tmp.' + rootNode);
+						if (!data) {
+							Ti.API.error("[REST API] ERROR: ROOT NODE NOT EXISTS");
+							return;
+						}
+					} else {
+						var data = tmp;
+					}
 					if(DEBUG){ 
 						Ti.API.info("[REST API] server create response: ");
 						Ti.API.debug(data) 
@@ -187,7 +206,16 @@ function Sync(method, model, opts) {
 			}
 			apiCall(params, function(_response) {
 				if (_response.success) {
-					var data = JSON.parse(_response.responseText);
+					var tmp = JSON.parse(_response.responseText);
+					if (rootNode) {
+						var data = eval('tmp.' + rootNode);
+						if (!data) {
+							Ti.API.error("[REST API] ERROR: ROOT NODE NOT EXISTS");
+							return;
+						}
+					} else {
+						var data = tmp;
+					}
 					if(DEBUG){ 
 						Ti.API.info("[REST API] server update response: ");
 						Ti.API.debug(data) 
@@ -216,7 +244,16 @@ function Sync(method, model, opts) {
 			}
 			apiCall(params, function(_response) {
 				if (_response.success) {
-					var data = JSON.parse(_response.responseText);
+					var tmp = JSON.parse(_response.responseText);
+					if (rootNode) {
+						var data = eval('tmp.' + rootNode);
+						if (!data) {
+							Ti.API.error("[REST API] ERROR: ROOT NODE NOT EXISTS");
+							return;
+						}
+					} else {
+						var data = tmp;
+					}
 					if(DEBUG){ 
 						Ti.API.info("[REST API] server read response: ");
 						Ti.API.debug(data) 
@@ -270,4 +307,4 @@ module.exports.afterModelCreate = function(Model, name) {
 	Model = Model || {};
 	Model.prototype.config.Model = Model;
 	return Model;
-}; 
+};

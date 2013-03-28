@@ -130,10 +130,11 @@ function Sync(method, model, opts) {
 				if (_response.success) {
 					var tmp = JSON.parse(_response.responseText);
 					if (rootNode) {
-						var data = eval('tmp.' + rootNode);
-						if (!data) {
+						if (tmp[rootNode] === undefined) {
 							Ti.API.error("[REST API] ERROR: ROOT NODE NOT EXISTS");
 							return;
+						} else {
+							var data = tmp[rootNode];						
 						}
 					} else {
 						var data = tmp;
@@ -163,10 +164,11 @@ function Sync(method, model, opts) {
 				if (_response.success) {
 					var tmp = JSON.parse(_response.responseText);
 					if (rootNode) {
-						var data = eval('tmp.' + rootNode);
-						if (!data) {
+						if (tmp[rootNode] === undefined) {
 							Ti.API.error("[REST API] ERROR: ROOT NODE NOT EXISTS");
 							return;
+						} else {
+							var data = tmp[rootNode];						
 						}
 					} else {
 						var data = tmp;
@@ -208,10 +210,11 @@ function Sync(method, model, opts) {
 				if (_response.success) {
 					var tmp = JSON.parse(_response.responseText);
 					if (rootNode) {
-						var data = eval('tmp.' + rootNode);
-						if (!data) {
+						if (tmp[rootNode] === undefined) {
 							Ti.API.error("[REST API] ERROR: ROOT NODE NOT EXISTS");
 							return;
+						} else {
+							var data = tmp[rootNode];						
 						}
 					} else {
 						var data = tmp;
@@ -246,10 +249,11 @@ function Sync(method, model, opts) {
 				if (_response.success) {
 					var tmp = JSON.parse(_response.responseText);
 					if (rootNode) {
-						var data = eval('tmp.' + rootNode);
-						if (!data) {
+						if (tmp[rootNode] === undefined) {
 							Ti.API.error("[REST API] ERROR: ROOT NODE NOT EXISTS");
 							return;
+						} else {
+							var data = tmp[rootNode];						
 						}
 					} else {
 						var data = tmp;
